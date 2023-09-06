@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Pomodoro_timer",
+  "version": "1.0",
+
+  "description": "Add a pomodoro timer to the browser.",
+
+  "icons": {
+    "48": "icons/pomodoro-48.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/pomodoro-32.png",
+    "default_title": "Pomodoro Timer",
+    "default_popup": "popup/pomodoro_timer.html"
+  },
+  "permissions": [
+    "alarms"
+  ]
+,
+    "background": {
+        "scripts": ["/popup/background.js"]
+    }
+}

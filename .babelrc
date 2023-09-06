@@ -1,0 +1,20 @@
+{
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "chrome": "58",
+            "edge": "16",
+            "firefox": "57",
+            "safari": "11"
+          }
+        }
+      ],
+      ["@babel/preset-react", {"runtime": "automatic"}]
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-transform-destructuring"
+      ]
+  }
