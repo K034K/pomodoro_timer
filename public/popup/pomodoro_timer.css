@@ -1,5 +1,5 @@
 html,body{
-    width: 100px;
+    width: 150px;
 }
 
 button{
@@ -16,4 +16,14 @@ button{
 
 .hidden{
     display: none;
+}
+
+
+.time{
+    text-align: center;
+     font-weight: bold;
+    color: #003133;
+    font-size: 2rem;
+    margin: 0.5rem ;
+
 }

@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 
 import Options from "./Components/Options";
 
-
 import "purecss/build/pure.css";
 
 const root = createRoot(document.getElementById("root"));

@@ -1,0 +1,33 @@
+/* FILEPATH: c:\Users\mryns\Projects\Pomodoro_timer\public\options\optionsCustom.css */
+
+/* Set a max-width for the container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+form{
+    margin: 0 auto;
+    width: fit-content;}
+
+
+
+/* Add media queries for smaller screens */
+@media only screen and (max-width: 600px) {
+    /* Set the max-width of the container to 100% */
+    .container {
+        max-width: 100%;
+    }
+    
+    /* Set the width of the form fields to 100% */
+    form input[type="text"],
+    form select {
+        width: 100%;
+    }
+    
+    /* Set the width of the submit button to 100% */
+    form input[type="submit"] {
+        width: 100%;
+        max-width: none;
+    }
+}

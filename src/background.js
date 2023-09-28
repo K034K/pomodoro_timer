@@ -3,6 +3,9 @@
  */
 import { notification } from "./utility/api.js";
 
+/**
+ * Represents a timer that can be used in the background of a Pomodoro timer application.
+ */
 class BackgroundTimer {
     /**
      * Creates a new instance of the BackgroundTimer class.
@@ -107,6 +110,11 @@ class BackgroundTimer {
 
 const backgroundTimer = new BackgroundTimer({ minutes: 25, seconds: 0 });
 
+/**
+ * Initializes the timer by retrieving workTime and breakTime from browser storage and setting them as properties of backgroundTimer object.
+ * @function
+ * @returns {void}
+ */
 function initializeTimer() {
     browser.storage.sync.get(["workTime", "breakTime"]).then((result) => {
         backgroundTimer.startMinutes = result.workTime;

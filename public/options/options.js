@@ -24412,7 +24412,11 @@
         workTime,
         breakTime
       });
-      browser.runtime.sendMessage({ type: "updateTime", minutes: workTime, breakTime });
+      browser.runtime.sendMessage({
+        type: "updateTime",
+        minutes: workTime,
+        breakTime
+      });
     };
     const getTime = () => {
       browser.storage.sync.get(["workTime", "breakTime"]).then((result) => {
@@ -24423,7 +24427,19 @@
     (0, import_react.useEffect)(() => {
       getTime();
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "pure-form pure-form-aligned", children: [
+    const handleWorkTimeChange = (event) => {
+      const value = parseInt(event.target.value);
+      if (!isNaN(value) && value >= 0) {
+        setWorkTime(value);
+      }
+    };
+    const handleBreakTimeChange = (event) => {
+      const value = parseInt(event.target.value);
+      if (!isNaN(value) && value >= 0) {
+        setBreakTime(value);
+      }
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "container options", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", { className: "pure-form pure-form-stacked", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "workingTime pure-control-group", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", { htmlFor: "workingTime", children: "Working Time" }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
@@ -24431,7 +24447,9 @@
           {
             type: "number",
             value: workTime,
-            onChange: (e) => setWorkTime(e.target.value)
+            onChange: handleWorkTimeChange,
+            className: "pure-u-1",
+            min: "0"
           }
         )
       ] }),
@@ -24442,7 +24460,9 @@
           {
             type: "number",
             value: breakTime,
-            onChange: (e) => setBreakTime(e.target.value)
+            onChange: handleBreakTimeChange,
+            className: "pure-u-1",
+            min: "0"
           }
         )
       ] }),
@@ -24450,11 +24470,11 @@
         "button",
         {
           onClick: () => saveTime(),
-          className: "pure-button pure-button-primary",
+          className: "pure-button pure-button-primary pure-u-1",
           children: "Save"
         }
       )
-    ] });
+    ] }) });
   }
 
   // src/options.js

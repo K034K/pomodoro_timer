@@ -15,7 +15,7 @@ const context = await esbuild.context({
         {
             out: "./options/options",
             in: "./src/options.js",
-        },
+        }
     ],
     bundle: true,
     jsx: "automatic",

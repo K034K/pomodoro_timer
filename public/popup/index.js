@@ -24441,13 +24441,12 @@
       }, 500);
       return () => clearInterval(interval);
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "timerBody", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Timer" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: timer }),
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "timerBody pure-form pure-form-stacked", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "pure-u-1 time-container", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { className: "time", children: timer }) }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         "button",
         {
-          className: "button",
+          className: "pure-button pure-button-primary pure-u-1",
           onClick: () => {
             void startTimer();
           },
@@ -24457,7 +24456,7 @@
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         "button",
         {
-          className: "button",
+          className: "pure-button  pure-u-1",
           onClick: () => {
             void stopTimer();
           },
@@ -24467,7 +24466,7 @@
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         "button",
         {
-          className: "button",
+          className: "pure-button pure-u-1",
           onClick: () => {
             resetTimer();
           },
@@ -24484,7 +24483,14 @@
       browser.runtime.openOptionsPage();
     };
     return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { onClick: () => openOptions(), children: "Options" }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+        "button",
+        {
+          className: "button-xsmall pure-button",
+          onClick: () => openOptions(),
+          children: "Options"
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TimerBody, {})
     ] });
   }

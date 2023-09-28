@@ -9,7 +9,9 @@ export default function App(props) {
 
     return (
         <div>
-            <button onClick={() => openOptions()}>Options</button>
+            <button
+                className="button-xsmall pure-button"
+                onClick={() => openOptions()}>Options</button>
             <TimerBody />
         </div>
     );
