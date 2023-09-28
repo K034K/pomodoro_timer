@@ -91,6 +91,11 @@ export default function Options(props) {
                     Save
                 </button>
             </form>
+            
+            <a href="https://www.buymeacoffee.com/mrynskyiwk" className="buy-me-coffee">
+                <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=mrynskyiwk&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" />
+                </a>
+            
         </div>
     );
 }

@@ -28,7 +28,7 @@ const context = await esbuild.context({
     loader: {
         ".js": "jsx",
     },
-    //minify: true,
+    minify: true,
     target: ["chrome58", "firefox57", "safari11"],
     logLevel: "info",
 });

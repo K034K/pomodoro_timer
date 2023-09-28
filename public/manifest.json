@@ -3,6 +3,10 @@
     "name": "Pomodoro_timer",
     "version": "1.0",
 
+    "author": "K034K",
+
+    "homepage_url": "https://github.com/K034K/pomodoro_timer",
+
     "description": "Add a pomodoro timer to the browser.",
 
     "icons": {

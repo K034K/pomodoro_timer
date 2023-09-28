@@ -9,7 +9,14 @@
 form{
     margin: 0 auto;
     width: fit-content;}
-
+    
+    /* Center the buy-me-coffee element */
+    .buy-me-coffee {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+    }
 
 
 /* Add media queries for smaller screens */
