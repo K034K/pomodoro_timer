@@ -1,22 +1,36 @@
 import * as esbuild from "esbuild";
-import babel from "esbuild-plugin-babel";
+
+
 
 const context = await esbuild.context({
-    entryPoints: ["./src/index.js","./src/background.js"],
+    entryPoints: [
+        {
+            out: "./popup/index",
+            in: "./src/index.js",
+        },
+        {
+            out: "./background/background",
+            in: "./src/background.js",
+        },
+        {
+            out: "./options/options",
+            in: "./src/options.js",
+        },
+    ],
     bundle: true,
     jsx: "automatic",
     platform: "browser",
-    bundle: true,
-    outdir: "./public/popup/",
-    plugins: [babel()],
+
+    outdir: "./public",
+    plugins: [
+        //CssModulesPlugin(), 
+    ],
     loader: {
         ".js": "jsx",
-    
     },
-    minify: true,
-    target: ["chrome58", "firefox57", "safari11", "edge16"],
+    //minify: true,
+    target: ["chrome58", "firefox57", "safari11"],
     logLevel: "info",
-
 });
 
 const result = await context.rebuild();

@@ -1092,7 +1092,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
@@ -1885,7 +1885,7 @@
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef;
+          exports.useRef = useRef2;
           exports.useState = useState2;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
@@ -2382,9 +2382,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React3 = require_react();
+          var React2 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3989,7 +3989,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React3.Children.forEach(props.children, function(child) {
+                  React2.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12436,7 +12436,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React3.Component().refs;
+          var emptyRefsObject = new React2.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23514,7 +23514,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React3 = require_react();
+          var React2 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23540,7 +23540,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24375,11 +24375,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx4 = jsxWithValidationDynamic;
-          var jsxs3 = jsxWithValidationStatic;
+          var jsx3 = jsxWithValidationDynamic;
+          var jsxs2 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx4;
-          exports.jsxs = jsxs3;
+          exports.jsx = jsx3;
+          exports.jsxs = jsxs2;
         })();
       }
     }
@@ -24397,102 +24397,70 @@
     }
   });
 
-  // src/index.js
+  // src/options.js
+  var import_react2 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
-  // src/App.jsx
-  var import_react2 = __toESM(require_react());
-
-  // src/Components/TimerBody.jsx
+  // src/Components/Options.jsx
   var import_react = __toESM(require_react());
-
-  // src/utility/api.js
-  function startTimer() {
-    browser.runtime.sendMessage({ type: "startTimer" });
-  }
-  function stopTimer() {
-    browser.runtime.sendMessage({ type: "stopTimer" });
-  }
-  function resetTimer() {
-    browser.runtime.sendMessage({ type: "resetTimer" });
-  }
-  function getTimer() {
-    return new Promise((resolve, reject) => {
-      browser.runtime.sendMessage({ type: "getTimer" }).then((response) => {
-        resolve(response.time);
-      }).catch((error) => {
-        reject(error);
-      });
-    });
-  }
-
-  // src/Components/TimerBody.jsx
   var import_jsx_runtime = __toESM(require_jsx_runtime());
-  function TimerBody() {
-    const [timer, setTimer] = (0, import_react.useState)(null);
-    getTimer().then((data) => {
-      setTimer(data);
-    });
+  function Options(props) {
+    const [workTime, setWorkTime] = (0, import_react.useState)("25");
+    const [breakTime, setBreakTime] = (0, import_react.useState)("5");
+    const saveTime = () => {
+      browser.storage.sync.set({
+        workTime,
+        breakTime
+      });
+      browser.runtime.sendMessage({ type: "updateTime", minutes: workTime, breakTime });
+    };
+    const getTime = () => {
+      browser.storage.sync.get(["workTime", "breakTime"]).then((result) => {
+        setWorkTime(result.workTime);
+        setBreakTime(result.breakTime);
+      });
+    };
     (0, import_react.useEffect)(() => {
-      const interval = setInterval(() => {
-        getTimer().then((data) => {
-          setTimer(data);
-        });
-      }, 500);
-      return () => clearInterval(interval);
+      getTime();
     }, []);
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "timerBody", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Timer" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: timer }),
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "pure-form pure-form-aligned", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "workingTime pure-control-group", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", { htmlFor: "workingTime", children: "Working Time" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "input",
+          {
+            type: "number",
+            value: workTime,
+            onChange: (e) => setWorkTime(e.target.value)
+          }
+        )
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "breakTime pure-control-group", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", { htmlFor: "breakTime", children: "Break Time" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "input",
+          {
+            type: "number",
+            value: breakTime,
+            onChange: (e) => setBreakTime(e.target.value)
+          }
+        )
+      ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         "button",
         {
-          className: "button",
-          onClick: () => {
-            void startTimer();
-          },
-          children: "Start"
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        "button",
-        {
-          className: "button",
-          onClick: () => {
-            void stopTimer();
-          },
-          children: "Stop"
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        "button",
-        {
-          className: "button",
-          onClick: () => {
-            resetTimer();
-          },
-          children: "Reset"
+          onClick: () => saveTime(),
+          className: "pure-button pure-button-primary",
+          children: "Save"
         }
       )
     ] });
   }
 
-  // src/App.jsx
+  // src/options.js
   var import_jsx_runtime2 = __toESM(require_jsx_runtime());
-  function App(props) {
-    const openOptions = () => {
-      browser.runtime.openOptionsPage();
-    };
-    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { onClick: () => openOptions(), children: "Options" }),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(TimerBody, {})
-    ] });
-  }
-
-  // src/index.js
-  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
   var root = (0, import_client.createRoot)(document.getElementById("root"));
-  root.render(/* @__PURE__ */ (0, import_jsx_runtime3.jsx)(App, {}));
+  root.render(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(Options, {}));
 })();
 /*! Bundled license information:
 

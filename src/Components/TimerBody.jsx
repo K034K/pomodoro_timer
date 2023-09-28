@@ -1,4 +1,3 @@
-
 //making pomdoro timer with react
 //use state to keep track of time
 
@@ -6,35 +5,56 @@
 //on click "stop" stop timer
 //on click "reset" reset timer
 
-// start time will tick up to 0 
+// start time will tick up to 0
 
 import React, { useEffect, useState } from "react";
+import { startTimer, stopTimer, resetTimer, getTimer } from "../utility/api";
 
-import {getTime , StartTimer, StopTimer, ResetTimer} from "../background";
+export default function TimerBody() {
+    const [timer, setTimer] = useState(null);
 
-export default function TimerBody(props) {
-    const time = 15;
+    getTimer().then((data) => {
+        setTimer(data);
+    });
 
-    const [timeMinutes, setTimeMinutes] = useState(time);
-
-    const [timeSeconds, setTimeSeconds] = useState(0);
-    
-
-
-
+    useEffect(() => {
+        const interval = setInterval(() => {
+            getTimer().then((data) => {
+                setTimer(data);
+            });
+        }, 500);
+        return () => clearInterval(interval);
+    }, []);
+ 
     return (
-        <div>
+        <div className="timerBody">
             <h1>Timer</h1>
-            <h2>{getTime}</h2>
-            <button className="button" onClick={StartTimer}>
+            <h2>{timer}</h2>
+            <button
+                className="button"
+                onClick={() => {
+                    void startTimer();
+                }}
+            >
                 Start
             </button>
-            <button className="button" onClick={StopTimer}>
+            <button
+                className="button"
+                onClick={() => {
+                    void stopTimer();
+                }}
+            >
                 Stop
             </button>
-            <button className="button" onClick={ResetTimer}>
+            <button
+                className="button"
+                onClick={() => {
+                    resetTimer();
+                }}
+            >
                 Reset
             </button>
+            
         </div>
     );
 }
