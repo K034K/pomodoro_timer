@@ -8,3 +8,6 @@ you can build it using, after installing all dependencies.
 
 Creator: Mrynskyi Vladyslav
 
+operating System: Any
+
+Software: Firefox, Nodejs, npm
